@@ -16,5 +16,6 @@ Javascript
     javascript/hooks
     javascript/javascript_cheatsheet
     javascript/javascript_reference
+    javascript/effects
     javascript/mobile
     javascript/qweb
