@@ -269,6 +269,59 @@ and its context will be extended with the `default_period_id` value. This is a
 very important usecase that lets developers combine actions together by providing
 some information to the next action.
 
+Bus
+===
+
+The web client ``env`` contains an event bus, named ``bus``. Its purpose is to allow
+various parts of the system to properly coordinate themselves, without coupling
+them. The ``env.bus`` is an owl `EventBus <https://github.com/odoo/owl/blob/master/doc/reference/event_bus.md>`_,
+that should be used for global events of interest.
+
+
+.. code-block:: javascript
+
+   // for example, in some service code:
+   env.bus.on("WEB_CLIENT_READY", null, doSomething);
+
+Here is a list of the events that can be triggered on this bus:
+
+.. list-table::
+   :header-rows: 1
+
+   * - Message
+     - Payload
+     - Trigger
+   * - ``ACTION_MANAGER:UI-UPDATED``
+     - a mode indicating what part of the ui has been updated ('current', 'new' or 'fullscreen')
+     - the rendering of the action requested to the action manager is done
+   * - ``ACTION_MANAGER:UPDATE``
+     - next rendering info
+     - the action manager has finished computing the next interface
+   * - ``MENUS:APP-CHANGED``
+     - none
+     - the menu service's current app has changed
+   * - ``ROUTE_CHANGE``
+     - none
+     - the url hash was changed
+   * - ``RPC:REQUEST``
+     - rpc id
+     - a rpc request has just started
+   * - ``RPC:RESPONSE``
+     - rpc id
+     - a rpc request is completed
+   * - ``WEB_CLIENT_READY``
+     - none
+     - the web client has been mounted
+   * - ``FOCUS-VIEW``
+     - none
+     - the main view should focus itself
+   * - ``CLEAR-CACHES``
+     - none
+     - all internal caches should be cleared
+   * - ``CLEAR-UNCOMMITTED-CHANGES``
+     - list of functions
+     - all views with uncommitted changes should clear them, and push a callback in the list
+
 
 Browser Object
 ==============
