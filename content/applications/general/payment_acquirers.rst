@@ -152,6 +152,22 @@ the payment acquirer.
 The form in this section is specific to the payment acquirer you are configuring. Please refer to
 the related documentation for more information.
 
+.. _payment_acquirers/webhooks:
+
+Confirm a payment asynchronously
+********************************
+
+Sometimes, the confirmation of a payment isn't immediate. You need to wait for its confirmation. To
+communicate with your acquirer asynchronously, you'll have to configure **webhooks**. A webhook is
+an automated message send by your acquirer when something happend, like a notification. Odoo will
+wait for these messages and verify their authenticity. To do so, they will compare the signature in
+the webhook with the one Odoo calculate, and if they match, it means the notification is legitimate
+and can be processed.
+
+For some payment acquirer, you'll need to configure the webhooks on the acquirer backend and/or on
+Odoo. This means you may need to tell your acquirer to send webhook, get the key to calculate the
+signature...
+
 .. _payment_acquirers/configuration_tab:
 
 Configuration tab

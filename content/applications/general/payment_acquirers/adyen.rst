@@ -47,8 +47,8 @@ This is also the place where you'll :ref:`allow payments to be made from your we
 
 .. _adyen/hmac_key:
 
-HMAC key
-~~~~~~~~
+HMAC key: enable asynchronous communication with Adyen
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In order to retrieve the HMAC Key, you'll need to configure a `Standard Notification` webhook. For
 this, log into your Adyen account then go to :menuselection:`Developers --> Webhooks --> Add webhook

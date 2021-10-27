@@ -20,7 +20,7 @@ Odoo needs your **API Credentials** to connect with your Stripe account, which c
 - Secret Key: The key to sign the merchant account with Stripe.
 - Webhook Signing Secret: If a webhook is enabled on your Stripe account
   (:menuselection:`Developers --> webhooks`), this signing secret must be set to authenticate the
-  messages sent from Stripe to Odoo.
+  asynchronous messages sent from Stripe to Odoo.
 
 To retrieve the publishable and secret keys, log into your Stripe dashboard and go to
 :menuselection:`Developers --> API Keys --> Standard Keys`
