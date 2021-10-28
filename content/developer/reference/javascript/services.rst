@@ -276,5 +276,92 @@ API
 
       const isInSalesGroup = await userService.hasGroup("sale.group_sales")
 
+The `notification` service
+==========================
 
+Overview
+--------
 
+* Technical name: `notification`
+* Dependencies: None
+
+The `notification` service allows to display notifications on the screen.
+
+.. admonition:: Quick usage
+
+  .. code-block:: js
+    
+    env.services.notification.add("You have made a sell!", {
+      title: "Congrats",
+      type: "success",
+      className: "commission_notification",
+      buttons: [
+          {
+              name: "See your Commission",
+              onClick: () => {
+                  env.services.action.doAction("commission_action");
+              },
+          },
+      ],
+    });
+
+  .. code-block:: css
+
+    .commission_notification .o_notification_buttons {
+          display: flex;
+          justify-content: end;
+    }
+
+  .. image:: images/notification_service.png
+    :width: 600 px
+    :alt: Example of notification
+    :align: center
+
+API
+---
+
+.. js:function:: add(message, options?)
+  
+    :param string message: the notification message to display
+    :param object options: the options of the notification
+    :returns: a handle to a function to close the notification
+
+    Show a notification.
+
+The options are defined by:
+
+.. code-block:: ts 
+
+   @typedef {Object} NotificationOptions
+   @property {string} [title]
+   // Add a title to the notification
+   @property {"warning" | "danger" | "success" | "info"} [type]
+   // Change the background color
+   @property {boolean} [sticky=false]
+   // Wether or not the notification shouldn't disapear after 4 seconds
+   @property {string} [className]
+   // Add a class name of the notification for css targetting
+   @property {function(): void} [onClose]
+   // Provides a callback to be executed when the notification closes
+   @property {NotificationButton[]} [buttons]
+   // Add buttons to the notifications. 
+
+   @typedef {Object} NotificationButton
+   @property {string} name
+   // The button text
+   @property {function(): void} onClick
+   // The callback to execute when the button is clicked
+   @property {string} [icon]
+   // A font-awesome string to add an icon
+   @property {boolean} [primary=false]
+   // Wheter the button has the primary button style
+
+Example
+-------
+
+.. code-block:: js
+
+  const notificationService = useService("notification");
+  const close = notificationService.add("I'm a very simple notification"); 
+  setTimeout(close, 1000); // close the notification after a second.
+  
