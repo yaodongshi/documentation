@@ -1952,11 +1952,11 @@ The view's root element is ``<map>`` multiple attributes are allowed
 ``default_order``
     If a field is provided the view will override the model's default order. The field must be part of the model on which the view is applied not from res.partner
 ``routing``
-    if ``true`` the routes between the records will be shown. The view still needs a valid MapBox token and at least two located records. (i.e the records has a res.partner many2one and the partner has a address or valid coordinates)
+    if ``1`` the routes between the records will be shown. The view still needs a valid MapBox token and at least two located records. (i.e the records has a res.partner many2one and the partner has a address or valid coordinates)
 ``hide_name``
-    if ``true`` hide a name from the marker's popup (default: false)
+    if ``1`` hide a name from the marker's popup (default: ``0``)
 ``hide_address``
-    if ``true`` hide a address from the marker's popup (default: false)
+    if ``1`` hide a address from the marker's popup (default: ``0``)
 
 The ``<map>`` element can contain multiple ``<field>`` elements. Each ``<field>`` element will be interpreted as a line in the marker's popup. The field's attributes are the following:
 
@@ -1972,7 +1972,7 @@ No attribute or element is mandatory but as stated above if no res.partner many2
 For example here is a map:
     .. code-block:: xml
 
-        <map res_partner="partner_id" default_order="date_begin" routing="true" hide_name="true">
+        <map res_partner="partner_id" default_order="date_begin" routing="1" hide_name="1">
             <field name="partner_id" string="Customer Name"/>
         </map>
 
